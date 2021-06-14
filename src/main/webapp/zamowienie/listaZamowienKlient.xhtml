@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="top">
+        <p>${msg["main.page"]}/${msg["menu.orders.list"]}</p>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="../templates/menu.xhtml" />
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="listaZamowienKlientForm">
+            <h:messages for="listaZamowien" />
+            <h:selectBooleanCheckbox id="confirmedOnly" value="#{listaZamowienKlientPageBean.tylkoNieZatwiedzone}" /><h:outputLabel for="confirmedOnly" value="#{msg['order.notConfirmedOnly']}" />
+            <h:commandButton value="#{msg['action.refresh']}" action="#{listaZamowienKlientPageBean.odswiez()}"/>
+            <h:dataTable id="listaZamowien" var="row" value="#{listaZamowienKlientPageBean.zamowienia}" headerClass="table_header" rowClasses="row_odd,row_even">
+                <ui:include src="_templateZamowienieLista.xhtml" />
+                <h:column id="actions">
+                    <f:facet name="header">${msg['general.actions']}</f:facet>
+                    <h:commandButton action="#{listaZamowienKlientPageBean.usunWybraneZamowienie(row)}" value="${msg['action.delete']}" rendered="#{not row.zatwierdzone}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

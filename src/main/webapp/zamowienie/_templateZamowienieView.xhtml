@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputLabel>${msg['order.number']} </h:outputLabel>
+    <h:outputText value="#{pageBean.zamowienie.id}" />
+    <h:outputLabel>${msg['order.whoOrdered']}</h:outputLabel><h:outputText value="#{row.loginSkladajacego}" />
+    <h:outputLabel>${msg['order.whoConfirmed']}</h:outputLabel><h:outputText value="#{row.loginZatwierdzajacego}" />
+    
+    <h:dataTable id="szczegolyZamowienia" var="row" value="#{pageBean.zamowienie.pozycjeZamowienia}" headerClass="table_header" rowClasses="row_odd,row_even">
+        <h:column id="nazwa">
+            <f:facet name="header">${msg['order.item.name']}</f:facet>
+            <h:outputText value="#{row.produkt.nazwa}" />
+        </h:column>
+        <h:column id="cena">
+            <f:facet name="header">${msg['order.item.price']}</f:facet>
+            <h:outputText value="#{row.cena}" />
+        </h:column>
+        <h:column id="total">
+            <f:facet name="header">${msg['order.item.quantity']}</f:facet>
+            <h:outputText value="#{row.ilosc}" />
+        </h:column>                
+    </h:dataTable>
+    <br />
+    <h:outputLabel>${msg['order.items']} </h:outputLabel>
+    <h:outputText value="#{pageBean.zamowienie.liczbaPozycji}" />
+    <br />
+    <h:outputLabel>${msg['order.total']} </h:outputLabel>
+    <h:outputText value="#{pageBean.zamowienie.sumaZamowienia}" />
+    <br />
+
+
+
+</ui:composition>

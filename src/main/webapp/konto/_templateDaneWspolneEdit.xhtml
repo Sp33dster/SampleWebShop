@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputLabel value="#{msg['account.name']} *" for="name" />
+    <h:inputText id="name" value="#{pageBean.konto.imie}" title="#{msg['account.name']}" required="true" >
+            <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
+    <!--<f:validateLength minimum="3" maximum="32" />-->
+    </h:inputText>
+    <h:messages for="name" />
+
+    <h:outputLabel value="#{msg['account.surname']} *" for="surname" />
+    <h:inputText id="surname" value="#{pageBean.konto.nazwisko}" title="#{msg['account.surname']}" required="true" >
+        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
+        <!--<f:validateLength minimum="3" maximum="32" />-->
+    </h:inputText>
+    <h:messages for="surname" />
+
+    <h:outputLabel value="#{msg['account.email']} *" for="email" />
+    <h:inputText id="email" value="#{pageBean.konto.email}" title="#{msg['account.email']}" required="true" >
+        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
+<!--        <f:validateLength minimum="6" maximum="64" />
+        <f:validateRegex pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$" />-->
+    </h:inputText>
+    <h:messages for="email" />
+
+    <h:outputLabel value="#{msg['account.phone']}" for="phone" />
+    <h:inputText id="phone" value="#{pageBean.konto.telefon}" title="#{msg['account.phone']}" required="false" >
+        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
+        <!--<f:validateLength maximum="12" />-->
+    </h:inputText>
+    <h:messages for="phone" />
+
+</ui:composition>

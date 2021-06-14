@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+    <h:form id="menu">
+        <ul>
+            <li><h:link outcome="main" >${msg["main.page"]}</h:link></li>
+            <li><h:link outcome="registerClient" >${msg["menu.register"]}</h:link></li>
+            <li>${msg["menu.accounts"]}</li>
+            <ul>
+                <li><h:link outcome="listAccounts" >${msg["menu.accounts.list"]}</h:link></li>
+                <li><h:link outcome="createClient" >${msg["menu.accounts.createclient"]}</h:link></li>
+                <li><h:link outcome="createEmployee" >${msg["menu.accounts.createemployee"]}</h:link></li>
+                <li><h:link outcome="createAdmin" >${msg["menu.accounts.createadmin"]}</h:link></li>
+            </ul>
+            <li>${msg["menu.orders"]}</li>
+            <ul>
+                <li><h:link outcome="listOrdersEmployee" >${msg["menu.orders.list"]}</h:link></li>
+                <li><h:link outcome="listOrdersClient" >${msg["menu.client.orders.list"]}</h:link></li>
+                <li><h:link outcome="editMyOrder" rendered="#{zamowienieController.zamowienieSkladanieNiepuste}">${msg["menu.order.my"]}</h:link></li>
+            </ul>
+            <li>${msg["menu.products"]}</li>
+            <ul>
+                <li><h:link outcome="productListClient" >${msg["menu.products.list"]}</h:link></li>
+            </ul>
+            <li>${msg["menu.login"]}:${kontoSession.mojLogin}</li>
+            <ul>
+                <li><h:link outcome="changeMyPassword" >${msg["menu.accounts.changePassword"]}</h:link></li>
+                <li><h:link outcome="detailsMyAccount" >${msg["menu.accounts.details"]}</h:link></li>
+                <li><h:commandLink action="#{kontoSession.resetujSesje()}" value="${msg['menu.closeSession']}" /></li>
+            </ul>
+        </ul>
+    </h:form>
+</ui:composition>

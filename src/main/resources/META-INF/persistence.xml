@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <!--Podstawowa jednostka składowania dla aplikacji-->
+  <persistence-unit name="ShopJavaDB_PU" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>java:app/jdbc/ShopJDBCJavaDB</jta-data-source>
+    <class>pl.spjava.shop.model.PozycjaZamowienia</class>
+    <class>pl.spjava.shop.model.Administrator</class>
+    <class>pl.spjava.shop.model.Pracownik</class>
+    <class>pl.spjava.shop.model.Kategoria</class>
+    <class>pl.spjava.shop.model.Konto</class>
+    <class>pl.spjava.shop.model.Klient</class>
+    <class>pl.spjava.shop.model.Produkt</class>
+    <class>pl.spjava.shop.model.Zamowienie</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <!--    Wartość DISABLE_SELECTIVE oznacza, że cache L2 będzie buforował wszystkie encje poza tymi oznaczonymi adnotacją @Cacheable(false).
+    Tu dotyczy to encji Zamowienie i Produkt, które są modyfikowane z poziomu dodatkowej jednostki składowania.-->
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <validation-mode>NONE</validation-mode>
+    <properties>
+      <!--        Wartość poniższej właściwości jest nazwą subpakietu, w którym generowane są klasy metamodelu dla tej jednostki składowania.
+        Dzięki temu nie ma konfliktu pomiędzy klasami metamodelu generowanymi przez różne jednostki składowania.-->
+      <property name="eclipselink.canonicalmodel.subpackage" value="ShopJavaDB_PU"/>
+      <!--      Wartość create oznacza, że struktura tabel bazy zostanie utworzona przy pierwszym uruchomieniu aplikacji, a później nie będzie zmieniana.
+      Jeżeli następują zmiany w klasach encyjnych, należy ręcznie usunąć tabele z bazy, lub zmienić wartość na drop-and-create-->
+      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+  <!--Dodatkowa jednostka składowania umożliwiająca działanie z innym poziomem izolacji transakcji.-->
+  <persistence-unit name="ShopJavaDB_PU_Serializable" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>java:app/jdbc/ShopJDBCJavaDB_Serializable</jta-data-source>
+    <class>pl.spjava.shop.model.PozycjaZamowienia</class>
+    <class>pl.spjava.shop.model.Administrator</class>
+    <class>pl.spjava.shop.model.Pracownik</class>
+    <class>pl.spjava.shop.model.Kategoria</class>
+    <class>pl.spjava.shop.model.Konto</class>
+    <class>pl.spjava.shop.model.Klient</class>
+    <class>pl.spjava.shop.model.Produkt</class>
+    <class>pl.spjava.shop.model.Zamowienie</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <!--    Ustawienie to powoduje, że jednostka nie używa cache L2. Jest to potrzebne, aby uniknąć niezgodności
+    stanu encji ze zmianami wprowadzanymi przez podstawową jednostke składowania.-->
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <validation-mode>NONE</validation-mode>
+    <properties>
+      <!--        Wartość poniższej właściwości jest nazwą subpakietu, w którym generowane są klasy metamodelu dla tej jednostki składowania.
+        Dzięki temu nie ma konfliktu pomiędzy klasami metamodelu generowanymi przez różne jednostki składowania.-->
+      <property name="eclipselink.canonicalmodel.subpackage" value="ShopJavaDB_PU_Serializable"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+      <!--W tej jednostce składowania wyłączono generowanie struktur w bazie danych. Inaczej tworzenie byłoby zdublowane.-->
+    </properties>
+  </persistence-unit>
+</persistence>

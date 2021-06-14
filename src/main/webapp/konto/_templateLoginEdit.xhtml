@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputLabel value="#{msg['account.login']} *" for="login" />
+    <h:inputText id="login" value="#{pageBean.konto.login}" title="#{msg['account.login']}" required="true" >
+        <!--Poniższe walidatory zostały zastąpione przez adnotacje BeanValidation-->
+<!--        <f:validateLength minimum="3" maximum="32" />
+        <f:validateRegex pattern="^[a-z0-9_-]{3,32}$" />-->
+    </h:inputText>
+    <h:messages for="login" /> 
+
+
+</ui:composition>

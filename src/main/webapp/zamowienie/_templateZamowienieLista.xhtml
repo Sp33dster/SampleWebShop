@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+                <h:column id="id">
+                    <f:facet name="header">${msg['order.number']}</f:facet>
+                    <h:outputText value="#{row.id}" />
+                </h:column>
+                <h:column id="owner">
+                    <f:facet name="header">${msg['order.whoOrdered']}</f:facet>
+                    <h:outputText value="#{row.loginSkladajacego}" />
+                </h:column>
+                <h:column id="confirmer">
+                    <f:facet name="header">${msg['order.whoConfirmed']}</f:facet>
+                    <h:outputText value="#{row.loginZatwierdzajacego}" />
+                </h:column>
+                <h:column id="items">
+                    <f:facet name="header">${msg['order.items']}</f:facet>
+                    <h:outputText value="#{row.liczbaPozycji}" />
+                </h:column>
+                <h:column id="total">
+                    <f:facet name="header">${msg['order.total']}</f:facet>
+                    <h:outputText value="#{row.sumaZamowienia}" />
+                </h:column>
+                <h:column id="state">
+                    <f:facet name="header">${msg['order.state']}</f:facet>
+                    <h:selectBooleanCheckbox id="confirmed" value="#{row.zatwierdzone}" disabled="true"/>    
+                        <h:outputLabel for="confirmed" value="${msg['order.confirmed']}" />    
+                </h:column>
+</ui:composition>

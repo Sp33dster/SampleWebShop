@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="top">
+        <p>${msg["main.page"]}/${msg["menu.accounts.list"]}</p>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="../templates/menu.xhtml" />
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="listaKontForm">
+            <h:messages for="listaKont"/>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="matchLogin" value="#{msg['account.matchByLogin']}"/><h:inputText id="matchLogin" value="#{listaKontPageBean.szukanyLogin}" /><h:commandButton value="#{msg['action.refresh']}" action="#{listaKontPageBean.odswiez()}" />
+            <h:outputLabel for="matchName" value="#{msg['account.matchByName']}"/><h:inputText id="matchName" value="#{listaKontPageBean.szukaneImie}" /><h:commandButton value="#{msg['action.reset']}" action="#{listaKontPageBean.wyczysc()}" />
+            <h:outputLabel for="matchSurname" value="#{msg['account.matchBySurname']}"/><h:inputText id="matchSurname" value="#{listaKontPageBean.szukaneNazwisko}" /><h:column />
+            <h:outputLabel for="matchEmail" value="#{msg['account.matchByEmail']}"/><h:inputText id="matchEmail" value="#{listaKontPageBean.szukanyEmail}" /><h:column />
+            </h:panelGrid>
+            <h:dataTable id="listaKont" var="row" value="#{listaKontPageBean.konta}" headerClass="table_header" rowClasses="row_odd,row_even">
+                <h:column id="login">
+                    <f:facet name="header">${msg['account.login']}</f:facet>
+                    <h:outputText value="#{row.login}" />
+                </h:column>
+                <h:column id="name">
+                    <f:facet name="header">${msg['account.name']}</f:facet>
+                    <h:outputText value="#{row.imie}" />
+                </h:column>
+                <h:column id="surname">
+                    <f:facet name="header">${msg['account.surname']}</f:facet>
+                    <h:outputText value="#{row.nazwisko}" />
+                </h:column>
+                <h:column id="email">
+                    <f:facet name="header">${msg['account.email']}</f:facet>
+                    <h:outputText value="#{row.email}" />
+                </h:column>
+                <h:column id="type">
+                    <f:facet name="header">${msg['account.type']}</f:facet>
+                    <ui:param name="typKonta" value="#{row.typ}" />
+                    <h:outputText value="${msg[typKonta]}" />
+                </h:column>
+                
+                <h:column id="state">
+                    <f:facet name="header">${msg['account.state']}</f:facet>
+                    <h:panelGrid columns="2">
+                        <h:selectBooleanCheckbox id="confirmed" value="#{row.potwierdzone}" disabled="true"/>    
+                        <h:outputLabel for="confirmed" value="${msg['account.confirmed']}" />    
+                        <h:selectBooleanCheckbox id="active" value="#{row.aktywne}" disabled="true"/>    
+                        <h:outputLabel for="active" value="${msg['account.active']}" />    
+                    </h:panelGrid>
+                </h:column>
+                    
+                <h:column id="actions">
+                    <f:facet name="header">${msg['general.actions']}</f:facet>
+                    <h:commandButton action="#{listaKontPageBean.edytujKonto(row)}" value="${msg['action.edit']}"/>
+                    <h:commandButton action="#{listaKontPageBean.rozpocznijZmianeHasla(row)}" value="${msg['menu.accounts.changePassword']}"/>
+                    <h:commandButton action="#{listaKontPageBean.aktywujKonto(row)}" value="${msg['action.activate']}" rendered="#{not row.aktywne}"/>
+                    <h:commandButton action="#{listaKontPageBean.deaktywujKonto(row)}" value="${msg['action.deactivate']}" rendered="#{row.aktywne}"/>
+                    <h:commandButton action="#{listaKontPageBean.potwierdzKonto(row)}" value="${msg['action.confirm']}" rendered="#{not row.potwierdzone}"/>
+                </h:column>
+                                
+                
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

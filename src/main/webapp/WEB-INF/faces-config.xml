@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.2"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <locale-config>
+            <default-locale>pl</default-locale>
+            <supported-locale>pl</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>i18n.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        <message-bundle>
+            i18n.jsf_messages
+        </message-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>cancelAction</from-outcome>
+            <to-view-id>/main/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>main</from-outcome>
+            <to-view-id>/main/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>createClient</from-outcome>
+            <to-view-id>/konto/utworzKlienta.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>createEmployee</from-outcome>
+            <to-view-id>/konto/utworzPracownika.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>createAdmin</from-outcome>
+            <to-view-id>/konto/utworzAdministratora.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>registerClient</from-outcome>
+            <to-view-id>/konto/rejestrujKlienta.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>confirmRegister</from-outcome>
+            <to-view-id>/konto/rejestrujKlientaPotwierdz.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>editAccount</from-outcome>
+            <to-view-id>/konto/edytujKonto.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>changePassword</from-outcome>
+            <to-view-id>/konto/zmienHasloKonta.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>detailsMyAccount</from-outcome>
+            <to-view-id>/konto/szczegolyMojegoKonta.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>changeMyPassword</from-outcome>
+            <to-view-id>/konto/zmienMojeHaslo.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>listAccounts</from-outcome>
+            <to-view-id>/konto/listaKont.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>productListClient</from-outcome>
+            <to-view-id>/produkt/listaProduktowKlient.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>confirmOrder</from-outcome>
+            <to-view-id>/zamowienie/zatwierdzZamowienie.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>editMyOrder</from-outcome>
+            <to-view-id>/zamowienie/edytujMojeZamowienieKlient.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>listOrdersEmployee</from-outcome>
+            <to-view-id>/zamowienie/listaZamowienPracownik.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>listOrdersClient</from-outcome>
+            <to-view-id>/zamowienie/listaZamowienKlient.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>deleteOrder</from-outcome>
+            <to-view-id>/zamowienie/usunZamowienie.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>createClientOrder</from-outcome>
+            <to-view-id>/zamowienie/zlozMojeZamowienieKlient.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/common/sukces.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+    </navigation-rule>
+</faces-config>
